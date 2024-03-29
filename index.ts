@@ -30,7 +30,7 @@ type ITSEndObject<T = unknown> = Record<TConfigTemplate[ETSEndStatuses]["require
 /**
  * Стандартная конфигурация jsend
  * */
-const JSEND_CONFIG: TConfigTemplate = {
+export const JSEND_CONFIG: TConfigTemplate = {
   success: { required: ["status", "data"] },
   fail: { required: ["status", "data"] },
   error: { required: ["status", "message"], optional: ["code", "data"] },
@@ -39,7 +39,7 @@ const JSEND_CONFIG: TConfigTemplate = {
 /**
  * Проверяем наличие обязательных ключей в объекте
  * */
-function requireKeys<T extends ITSEndObject>(
+function requireKeys<T extends ITSEndObject = ITSEndObject>(
   keys: TConfigTemplate[ETSEndStatuses]["required"],
   data: T
 ): boolean {
@@ -51,7 +51,7 @@ function requireKeys<T extends ITSEndObject>(
  * @param {T} data
  * @param {TConfigTemplate} config
  * @return {boolean} */
-function isValid<T extends ITSEndObject>(
+function isValid<T extends ITSEndObject = ITSEndObject>(
   data: T,
   config = JSEND_CONFIG
 ): boolean {
